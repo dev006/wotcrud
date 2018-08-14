@@ -10,8 +10,7 @@
     "authors": [
         {
             "name": "dev006",
-            "email": "dev006.weboccult@gmail.com",
-            "homepage": "https://github.com/"
+            "email": "dev006.weboccult@gmail.com"
         }
     ],
     "require": {
