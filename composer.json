@@ -1,0 +1,41 @@
+{
+    "name": "dev006/wotcrud",
+    "license": "MIT",
+    "description": "Laravel CRUD Generator",
+    "keywords": [
+        "laravel",
+        "crud",
+        "crud generator"
+    ],
+    "authors": [
+        {
+            "name": "dev006",
+            "email": "dev006.weboccult@gmail.com",
+            "homepage": ""
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "^5.1",
+        "laravelcollective/html": "^5.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.6",
+        "phpunit/phpunit": "^5.7",
+        "orchestra/testbench": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wot\\CrudGenerator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wot\\CrudGenerator\\CrudGeneratorServiceProvider"
+            ]
+        }
+    }
+}
+
+
