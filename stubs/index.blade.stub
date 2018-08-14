@@ -1,0 +1,52 @@
+@extends('layouts.app')
+
+@section('content')
+
+    @if(%%crudServerSide%% == true)
+    <form method="GET" action="{{ url('/%%crudName%%') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+            <span class="input-group-append">
+                <button class="btn btn-secondary" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </form> 
+    @endif
+
+    <h1>%%crudNamePluralCap%% <a href="{{ route('%%crudName%%.create') }}" class="btn btn-primary pull-right btn-sm">Add New %%crudNameCap%%</a></h1>
+    <div class="table">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>S.No</th>%%formHeadingHtml%%<th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($%%crudNamePlural%% as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    %%formBodyHtml%%
+                    <td>
+                        <a href="{{ route('%%crudName%%.edit', $item->id) }}">
+                            <button type="submit" class="btn btn-primary btn-xs">Update</button>
+                        </a> /
+                        {!! Form::open([
+                            'method'=>'DELETE',
+                            'route' => ['%%crudName%%.destroy', $item->id],
+                            'style' => 'display:inline'
+                        ]) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+                        {!! Form::close() !!}
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        @if(%%crudServerSide%% == true)
+            <div class="pagination"> {!! $%%crudNamePlural%%->render() !!} </div>
+        @endif    
+    </div>
+
+@endsection

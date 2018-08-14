@@ -1,0 +1,16 @@
+<?php namespace App\Http\Contracts;
+
+interface {{crudNameCap}}Contract
+{
+	public function index($keyword);
+
+	public function store($data);
+
+	public function create();
+
+	public function edit($data);
+
+	public function update($id, $data);
+
+	public function delete($id);
+}

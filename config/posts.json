@@ -1,0 +1,66 @@
+{
+    "common": [
+        {
+            "table_name": "posts",
+            "model": "Post",
+            "is_view": true,
+            "is_serverside_database_table": true,
+            "is_migration": true,
+            "migration_prefix": "wot_crud",
+            "is_route": true
+        }
+    ],
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "text"
+        },
+        {
+            "name": "category",
+            "type": "text"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": null,
+            "references": null,
+            "on": null,
+            "onDelete": null
+        }
+    ],
+    "relationships": [
+        {
+            "name": null,
+            "type": null,
+            "class": null
+        }
+    ],
+    "validations": [
+        {
+            "field": "title",
+            "rules": "required|max:10"
+        }
+    ],
+    "repositories": [
+        {
+            "contracts": [
+                [
+                ]
+            ]
+        },
+        {
+            "repository": [
+                [
+                ]
+            ]
+        }
+    ]
+}

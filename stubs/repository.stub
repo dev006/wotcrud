@@ -1,0 +1,105 @@
+<?php
+
+namespace DummyNamespace;
+
+use {{DummyContractNamespace}}s\{{contractName}};
+use DummyRootNamespace{{crudNameCap}};
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Session;
+
+class DummyClass implements {{contractName}}
+{
+
+    protected $model;
+
+    public function __construct({{crudNameCap}} ${{crudNameCap}})
+    {
+        $this->model = ${{crudNameCap}};
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index($keyword)
+    {
+        ${{crudNamePlural}} = $this->model->{{whereSnippet}}paginate(1);
+
+        return ${{crudNamePlural}};
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store($request)
+    {
+        $store = $this->model->create($request);
+        return $store;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        ${{crudNameSingular}} = $this->model->findOrFail($id);
+
+        return ${{crudNameSingular}};
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        ${{crudNameSingular}} = $this->model->findOrFail($id);
+
+        return ${{crudNameSingular}};
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id, $request)
+    {
+        ${{crudNameSingular}} = $this->model->findOrFail($id);
+        $update = $this->model->where('id', $id)->update($request);
+        return $update;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function delete($id)
+    {
+        $delete = {{crudNameCap}}::destroy($id);
+
+        return $delete;
+    }
+
+}

@@ -1,0 +1,126 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyRootNamespaceHttp\Requests\{{crudNameCap}}Request;
+use App\Http\Contracts\{{crudNameCap}}Contract;
+use DummyRootNamespaceHttp\Controllers\Controller;
+
+use DummyRootNamespace{{crudNameCap}};
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Session;
+
+class DummyClass extends Controller
+{
+
+    public function __construct({{crudNameCap}}Contract $contracts)
+    {
+        $this->repo = $contracts;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $keyword = request()->search;
+
+        if(!empty($keyword))
+        {
+            ${{crudNamePlural}} = $this->repo->index($keyword);
+
+        } else {
+            // ${{crudNamePlural}} = {{crudNameCap}}::paginate(15);
+            ${{crudNamePlural}} = $this->repo->index(null);
+        }
+
+        return view('{{viewPath}}{{crudName}}.index', compact('{{crudNamePlural}}'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('{{viewPath}}{{crudName}}.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store({{crudNameCap}}Request $request)
+    {
+        //$this->validate($request, ['name' => 'required']); // Uncomment and modify if you need to validate any input.
+        $this->repo->store($request->all());
+
+        Session::flash('flash_message', '{{crudNameCap}} successfully added!');
+
+        return redirect('{{crudName}}');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        ${{crudNameSingular}} = {{crudNameCap}}::findOrFail($id);
+
+        return view('{{viewPath}}{{crudName}}.show', compact('{{crudNameSingular}}'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        ${{crudNameSingular}} = {{crudNameCap}}::findOrFail($id);
+
+        return view('{{viewPath}}{{crudName}}.edit', compact('{{crudNameSingular}}'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id, {{crudNameCap}}Request $request)
+    {
+        //$this->validate($request, ['name' => 'required']); // Uncomment and modify if you need to validate any input.
+        ${{crudNameSingular}} = {{crudNameCap}}::findOrFail($id);
+        $this->repo->update($id, $request->except(['_token','_method']));
+
+        Session::flash('flash_message', '{{crudNameCap}} successfully updated!');
+
+        return redirect('{{crudName}}');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $this->repo->delete($id);
+
+        Session::flash('flash_message', '{{crudNameCap}} successfully deleted!');
+
+        return redirect('{{crudName}}');
+    }
+
+}
