@@ -2,7 +2,6 @@
     "name": "dev006/wotcrud",
     "license": "MIT",
     "description": "Laravel CRUD Generator",
-    "minimum-stability": "master",
     "keywords": [
         "laravel",
         "crud",
